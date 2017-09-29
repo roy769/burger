@@ -4,8 +4,7 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var path = require("path");
 
-var port = 3000;
-
+var PORT = process.env.PORT || 3000;
 var app = express();
 
 //static content from the "assets" being served
@@ -28,4 +27,4 @@ var routes = require('./controllers/burgers_controllers.js')
 app.use("/", routes);
 console.log("boom");
 
-app.listen(port);
+app.listen(PORT);
