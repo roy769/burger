@@ -17,8 +17,20 @@ var burgerTime = {
           cb(res);
       });
   },
-  updateOne: function(objColVals, condition, function(res)
+  updateOne: function(objColVals, condition, cb)
   {
-    cb(res)
-  });
+    orm.updateOne("burgers", objColVals, condition, function(res)
+    {
+      cb(res)
+    });
 },
+  deleteOne: function(objColVals, condition, cb)
+  {
+    orm.deleteOne("burgers", objColVals, condition, function(res)
+    {
+      cb(res);
+    });
+  }    
+};
+//export database for controllers
+module.exports = burgerTime;
