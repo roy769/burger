@@ -8,7 +8,7 @@ var PORT = process.env.PORT || 3000;
 var app = express();
 
 //static content from the "assets" being served
-app.use(express.static("assets"));
+app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({extended: false}));
 
