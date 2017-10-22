@@ -2,7 +2,7 @@
 
 var orm = require('../config/orm.js');
 
-var burgerTime = {
+var burger = {
   selectAll: function(cb)
   {
       orm.selectAll("burgers", function(res)
@@ -10,27 +10,26 @@ var burgerTime = {
           cb(res);
       });
   },
-  insertOne: function(cols, vals, cb)
+  insertOne: function(name, cb)
   {
-      orm.insertOne("burgers", cols, vals, function(res)
-      {
-          cb(res);
-      });
+      orm.insertOne("burgers", [
+        "burger_name", "devoured"
+      ], [
+        name, false
+      ], cb);
   },
-  updateOne: function(objColVals, condition, cb)
+  updateOne: function(id, cb)
   {
-    orm.updateOne("burgers", objColVals, condition, function(res)
-    {
-      cb(res)
-    });
+    var condition = "id=" + id;
+    orm.updateOne("burgers", { devoured: true
+  }, condition, cb);
 },
-  deleteOne: function(objColVals, condition, cb)
-  {
-    orm.deleteOne("burgers", objColVals, condition, function(res)
-    {
-      cb(res);
-    });
-  }    
+deleteOne: function(id, cb)
+{
+  var condition = "id=" + id;
+  orm.deleteOne("burgers", { devoured: true
+    }, condition, cb);
+  },
 };
 //export database for controllers
-module.exports = burgerTime;
+module.exports = burger;
